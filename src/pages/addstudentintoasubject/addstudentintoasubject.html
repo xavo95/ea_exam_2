@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      ADD STUDENT INTO A SUBJECT
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form ngNativeValidate #usuarioAsignatura="ngForm" style="text-align:center" (ngSubmit)="onSubmit()" class="col-md-4">
+    <p>
+      <label>IdStudent:</label>
+      <input class="form-control" type="text" #name="ngModel" ngControl="name" name="name"
+             [(ngModel)]="studentsubject.studentid" required minlength="4"/>
+    </p>
+    <p>
+      <label>SubjectId:</label>
+      <input class="form-control" type="text" #gender="ngModel" ngControl="gender" name="gender"
+             [(ngModel)]="studentsubject.subjectid" required/>
+    </p>
+    <input type="submit" value="Add student to subject" class="btn btn-success"/>
+  </form>
+
+  <h2>List of subjects:</h2>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">CONTADOR</th>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+      </tr>
+      <ng-container *ngFor="let subject of su; let i = index">
+        <tr>
+          <th>{{i}}</th>
+          <th>{{subject._id}}</th>
+          <th>{{subject.name}}</th>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+</ion-content>

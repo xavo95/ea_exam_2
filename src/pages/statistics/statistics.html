@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Subject List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+    }
+  </style>
+
+  <h1 style="text-align:center">STATISTICS</h1>
+
+
+  <form ngNativeValidate #addsubject="ngForm" style="text-align:center" (ngSubmit)="onsubmit()" class="col-md-4">
+    <p>
+      <label>Subject name:</label>
+      <input class="form-control" type="text" #name="ngModel" ngControl="name" name="name" [(ngModel)]="subject.name"
+             required/>
+    </p>
+    <p>
+      <label>Students:</label>
+      <input class="form-control" type="text" #gender="ngModel" ngControl="gender" name="gender"
+             [(ngModel)]="subject.students" required/>
+    </p>
+
+    <p>
+      <label>Studies:</label>
+      <input class="form-control" type="text" #gender="ngModel" ngControl="studies" name="studies"
+             [(ngModel)]="subject.studies" required/>
+    </p>
+
+    <p>
+      <label>Quadrimestre:</label>
+      <input class="form-control" type="text" #gender="ngModel" ngControl="gender" name="gender"
+             [(ngModel)]="subject.quadrimestre" required/>
+    </p>
+    <input type="submit" value="Add subject" class="btn btn-success"/>
+  </form>
+
+
+  <br/><br/>
+  <h2>List of subjects:</h2>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">CONTADOR</th>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+        <th align="center">NUM ESTUDIANTS</th>
+      </tr>
+      <ng-container *ngFor="let subject of su; let i = index">
+        <tr>
+          <th>{{i}}</th>
+          <th (click)="clicking(subject._id)">{{subject._id}}</th>
+          <th>{{subject.name}}</th>
+          <th>{{subject.students.length}}</th>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+
+
+  <br/><br/>
+  <h2>Subject detail: </h2>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+        <th align="center"></th>
+        <th align="center">STUDIES</th>
+        <th align="center">QUADRIMESTRE</th>
+        <th align="center">STUDENTS</th>
+
+      </tr>
+      <tr>
+        <th>{{sudetalle._id}}</th>
+        <th>{{sudetalle.name}}
+        <th>
+        <th>{{sudetalle.studies}}</th>
+        <th>{{sudetalle.quadrimestre}}</th>
+        <th>
+      <tr *ngFor="let student of sudetalle.students" (click)="clicking2(student)">
+        {{ student }}
+      </tr>
+      </th>
+
+
+    </table>
+  </div>
+
+
+  <br/><br/>
+  <h2>Student detail: </h2>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+        <th align="center"></th>
+        <th align="center">SURNAMES</th>
+        <th align="center">COUNTRY</th>
+        <th align="center">PHONES</th>
+        <th align="center">AGE</th>
+        <th align="center">GENDER</th>
+      </tr>
+      <tr>
+        <th>{{stdetalle._id}}</th>
+        <th>{{stdetalle.name}}
+        <th>
+        <th>{{stdetalle.surnames}}</th>
+        <th>{{stdetalle.country}}</th>
+        <th>
+          <li *ngFor="let phones of stdetalle.phones">
+            {{ phones }}
+          </li>
+        </th>
+        <th>{{stdetalle.age}}</th>
+        <th>{{stdetalle.gender}}</th>
+      </tr>
+
+    </table>
+  </div>
+</ion-content>

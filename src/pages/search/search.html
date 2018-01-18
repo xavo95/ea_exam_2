@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+    }
+  </style>
+  <form ngNativeValidate #eliminarForm="ngForm" style="text-align:center" (ngSubmit)="onsubmit()" class="col-md-4">
+    <p>
+      <label>Name:</label>
+      <input class="form-control" type="text" #nombre="ngModel" ngControl="nombre" name="nombre"
+             [(ngModel)]="subject.name" required/>
+      <input type="submit" value="Search subject" class="btn btn-success"/>
+    </p>
+  </form>
+
+  <form ngNativeValidate #titulacion="ngForm" style="text-align:center" (ngSubmit)="onsubmit2()" class="col-md-4">
+    <p>
+      <label>Titulacion:</label>
+      <input class="form-control" type="text" #nombre="ngModel" ngControl="nombre" name="nombre"
+             [(ngModel)]="subject.studies" required/>
+      <input type="submit" value="Search subject" class="btn btn-success"/>
+    </p>
+  </form>
+
+  <form ngNativeValidate #quadrimestre="ngForm" style="text-align:center" (ngSubmit)="onsubmit3()" class="col-md-4">
+    <p>
+      <label>Quadrimestre:</label>
+      <input class="form-control" type="text" #nombre="ngModel" ngControl="nombre" name="nombre"
+             [(ngModel)]="subject.quadrimestre" required/>
+      <input type="submit" value="Search subject" class="btn btn-success"/>
+    </p>
+  </form>
+
+  <br/><br/>
+  <h2>Subject detail: </h2>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+        <th align="center"></th>
+        <th align="center">STUDIES</th>
+        <th align="center">QUADRIMESTRE</th>
+        <th align="center">STUDENTS</th>
+
+      </tr>
+
+      <ng-container *ngFor="let subject of sub; let i = index">
+        <tr>
+          <th>{{subject._id}}</th>
+          <th>{{subject.name}}</th>
+          <th></th>
+          <th>{{subject.studies}}</th>
+          <th>{{subject.quadrimestre}}</th>
+          <li *ngFor="let student of subject.students">
+            {{ student }}
+          </li>
+
+        </tr>
+
+      </ng-container>
+
+
+    </table>
+  </div>
+</ion-content>

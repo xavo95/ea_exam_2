@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Add Student
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+    }
+  </style>
+  <form ngNativeValidate #usuarioForm="ngForm" style="text-align:center" (ngSubmit)="onSubmit()" class="col-md-4"
+        textalign="center">
+    <p>
+      <label>Name:</label>
+
+      <input class="form-control" type="text" #name="ngModel" ngControl="name" name="name" [(ngModel)]="student.name"
+             required minlength="4"/>
+
+    </p>
+    <p>
+      <label>Surnames:</label>
+      <input class="form-control" type="text" #surnames="ngModel" ngControl="surnames" name="surnames"
+             [(ngModel)]="student.surnames"/>
+    </p>
+    <p>
+      <label>Country:</label>
+      <input class="form-control" type="text" #country="ngModel" ngControl="country" name="country"
+             [(ngModel)]="student.country" required/>
+    </p>
+    <p>
+      <label>Age:</label>
+      <input class="form-control" type="text" #age="ngModel" ngControl="age" name="age" [(ngModel)]="student.age"
+             required/>
+    </p>
+    <p>
+      <label>Phones work:</label>
+      <input class="form-control" type="text" #phoneswork="ngModel" ngControl="phoneswork" name="phoneswork"
+             [(ngModel)]="telfs.work" required/>
+    </p>
+    <p>
+      <label>Phones home:</label>
+      <input class="form-control" type="text" #phoneshome="ngModel" ngControl="phoneshome" name="phoneshome"
+             [(ngModel)]="telfs.home" required/>
+    </p>
+    <p>
+      <label>Gender:</label>
+      <input class="form-control" type="text" #gender="ngModel" ngControl="gender" name="gender"
+             [(ngModel)]="student.gender" required/>
+    </p>
+    <input type="submit" value="Add student" class="btn btn-success"/>
+  </form>
+
+  <button (click)="this.getStudents()" style="text-align:center" class="col-md-4">See all students</button>
+  <br/><br/>
+  <div class="card">
+    <table>
+      <tr>
+        <th align="center">Contador</th>
+        <th align="center">ID</th>
+        <th align="center">NAME</th>
+        <th align="center"></th>
+        <th align="center">SURNAMES</th>
+        <th align="center">COUNTRY</th>
+        <th align="center">PHONES</th>
+        <th align="center">AGE</th>
+        <th align="center">GENDER</th>
+      </tr>
+      <ng-container *ngFor="let student of st; let i = index">
+
+        <tr>
+          <th>{{i}}</th>
+          <th>{{student._id}}</th>
+          <th>{{student.name}}
+          <th>
+          <th>{{student.surnames}}</th>
+          <th>{{student.country}}</th>
+          <th>
+            <li *ngFor="let phones of student.phones">
+              {{ phones }}
+            </li>
+          </th>
+          <th>{{student.age}}</th>
+          <th>{{student.gender}}</th>
+
+        </tr>
+
+
+      </ng-container>
+    </table>
+  </div>
+</ion-content>
+
+
+
